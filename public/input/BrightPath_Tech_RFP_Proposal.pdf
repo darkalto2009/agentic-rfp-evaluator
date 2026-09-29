@@ -1,0 +1,170 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 3 0 R >>
+endobj
+2 0 obj
+<< /Type /Outlines /Count 0 >>
+endobj
+3 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R] /Count 3 >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /Name /F1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 1042 >>
+stream
+BT
+/F1 10 Tf
+50 750 Td
+14 TL
+/F1 14 Tf
+(SUPPLIER RFP PROPOSAL: BRIGHTPATH TECH AGILE PROPOSAL) Tj
+T*
+/F1 10 Tf
+(Supplier: BrightPath Tech | Date: 2026-03-02 | Experience Rating: 3.5/5.0) Tj
+T*
+(--------------------------------------------------------------------------------) Tj
+T*
+T*
+T*
+/F1 11 Tf
+(SECTION 1: EXECUTIVE SUMMARY & UNDERSTANDING OF REQUIREMENT) Tj
+T*
+/F1 9 Tf
+(BrightPath Tech offers an agile, rapid, and budget-optimized procurement) Tj
+T*
+(transformation. Our lean methodology delivers core capabilities at the lowest overall) Tj
+T*
+(cost in the market, completing the deployment in record time without administrative) Tj
+T*
+(overhead.) Tj
+T*
+T*
+T*
+/F1 11 Tf
+(SECTION 2: PROPOSED SOLUTION & TECHNICAL ARCHITECTURE) Tj
+T*
+/F1 9 Tf
+(Technical Architecture: Monolithic Node.js/Express API with SQLite/MySQL database) Tj
+T*
+(and Redis caching layer. Hosted on lightweight Docker containers in a single cloud) Tj
+T*
+(region. Basic REST endpoints for procurement intake. Scalability up to 10,000) Tj
+T*
+(transactions/sec.) Tj
+T*
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 3 0 R /MediaBox [0 0 612 792] /Contents 5 0 R /Resources << /Font << /F1 4 0 R >> >> >>
+endobj
+7 0 obj
+<< /Length 894 >>
+stream
+BT
+/F1 10 Tf
+50 750 Td
+14 TL
+/F1 14 Tf
+(SUPPLIER RFP PROPOSAL: BrightPath Tech (Page 2)) Tj
+T*
+/F1 10 Tf
+(--------------------------------------------------------------------------------) Tj
+T*
+T*
+T*
+/F1 11 Tf
+(SECTION 3: TIMELINE, TEAM STRUCTURE, AND MILESTONES) Tj
+T*
+/F1 9 Tf
+(Delivery Schedule: Accelerated 10 weeks delivery. Phase 1 \(Weeks 1-2\): Setup &) Tj
+T*
+(Mockups. Phase 2 \(Weeks 3-7\): Feature Sprint. Phase 3 \(Weeks 8-10\): Testing &) Tj
+T*
+(Deployment. Staffing: 2 Full-Stack Developers and 1 Part-Time Project Manager.) Tj
+T*
+T*
+T*
+/F1 11 Tf
+(SECTION 4: PRICING TABLE & COMMERCIAL ASSUMPTIONS) Tj
+T*
+/F1 9 Tf
+(Commercial Value: Total Project Cost is $145,000 \(industry-lowest fixed price\).) Tj
+T*
+(Monthly maintenance is $3,500/month. Payment terms: 50% upfront, 50% upon deployment.) Tj
+T*
+(Assumptions: No custom legacy ERP integrations required out-of-the-box.) Tj
+T*
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 3 0 R /MediaBox [0 0 612 792] /Contents 7 0 R /Resources << /Font << /F1 4 0 R >> >> >>
+endobj
+9 0 obj
+<< /Length 979 >>
+stream
+BT
+/F1 10 Tf
+50 750 Td
+14 TL
+/F1 14 Tf
+(SUPPLIER RFP PROPOSAL: BrightPath Tech (Page 3)) Tj
+T*
+/F1 10 Tf
+(--------------------------------------------------------------------------------) Tj
+T*
+T*
+T*
+/F1 11 Tf
+(SECTION 5: SECURITY, COMPLIANCE, AND RISK CONTROLS) Tj
+T*
+/F1 9 Tf
+(Security & Compliance Controls: Standard HTTPS/TLS encryption. Basic username and) Tj
+T*
+(password authentication with bcrypt hashing. Basic firewall protection. Note: SOC 2) Tj
+T*
+(and ISO 27001 certifications are currently pending audit; compliance self-attestation) Tj
+T*
+(provided.) Tj
+T*
+T*
+T*
+/F1 11 Tf
+(SECTION 6: SUPPORT MODEL, RELEVANT EXPERIENCE, & CLIENT REFERENCES) Tj
+T*
+/F1 9 Tf
+(Support Model & References: Standard business hours support \(Monday-Friday 9 AM - 5) Tj
+T*
+(PM EST\) via email ticket desk. Average response time: 8-12 hours. Experience: 3 years) Tj
+T*
+(in commercial software development. References: Local Retail Logistics Corp,) Tj
+T*
+(GreenLine Distributors.) Tj
+T*
+ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 3 0 R /MediaBox [0 0 612 792] /Contents 9 0 R /Resources << /Font << /F1 4 0 R >> >> >>
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000104 00000 n 
+0000000174 00000 n 
+0000000254 00000 n 
+0000001348 00000 n 
+0000001474 00000 n 
+0000002419 00000 n 
+0000002545 00000 n 
+0000003575 00000 n 
+trailer
+<< /Size 11 /Root 1 0 R >>
+startxref
+3702
+%%EOF

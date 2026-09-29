@@ -1,0 +1,166 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 3 0 R >>
+endobj
+2 0 obj
+<< /Type /Outlines /Count 0 >>
+endobj
+3 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R] /Count 3 >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /Name /F1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 1039 >>
+stream
+BT
+/F1 10 Tf
+50 750 Td
+14 TL
+/F1 14 Tf
+(SUPPLIER RFP PROPOSAL: ORBIT DIGITAL PROCUREMENT TRANSFORMATION PROPOSAL) Tj
+T*
+/F1 10 Tf
+(Supplier: Orbit Digital | Date: 2026-03-03 | Experience Rating: 4.2/5.0) Tj
+T*
+(--------------------------------------------------------------------------------) Tj
+T*
+T*
+T*
+/F1 11 Tf
+(SECTION 1: EXECUTIVE SUMMARY & UNDERSTANDING OF REQUIREMENT) Tj
+T*
+/F1 9 Tf
+(Orbit Digital is an established enterprise procurement veteran with over 15 years of) Tj
+T*
+(industry excellence. We bring deep domain expertise, having successfully delivered) Tj
+T*
+(over 50 large-scale public and private sector procurement transformations.) Tj
+T*
+T*
+T*
+/F1 11 Tf
+(SECTION 2: PROPOSED SOLUTION & TECHNICAL ARCHITECTURE) Tj
+T*
+/F1 9 Tf
+(Technical Architecture: Cloud-hosted platform built on Spring Boot microservices) Tj
+T*
+(with Oracle Cloud / AWS support. Note: Legacy core architecture with standard batch) Tj
+T*
+(data sync; real-time webhooks available as roadmap items. Custom connectors built on) Tj
+T*
+(request.) Tj
+T*
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 3 0 R /MediaBox [0 0 612 792] /Contents 5 0 R /Resources << /Font << /F1 4 0 R >> >> >>
+endobj
+7 0 obj
+<< /Length 904 >>
+stream
+BT
+/F1 10 Tf
+50 750 Td
+14 TL
+/F1 14 Tf
+(SUPPLIER RFP PROPOSAL: Orbit Digital (Page 2)) Tj
+T*
+/F1 10 Tf
+(--------------------------------------------------------------------------------) Tj
+T*
+T*
+T*
+/F1 11 Tf
+(SECTION 3: TIMELINE, TEAM STRUCTURE, AND MILESTONES) Tj
+T*
+/F1 9 Tf
+(Timeline & Team: 18 weeks delivery cycle. Phase 1 \(Weeks 1-5\): Design and) Tj
+T*
+(Governance. Phase 2 \(Weeks 6-13\): System Configuration. Phase 3 \(Weeks 14-18\): Pilot) Tj
+T*
+(and Transition. Team led by Senior Partner with 20+ years procurement experience and) Tj
+T*
+(4 implementation specialists.) Tj
+T*
+T*
+T*
+/F1 11 Tf
+(SECTION 4: PRICING TABLE & COMMERCIAL ASSUMPTIONS) Tj
+T*
+/F1 9 Tf
+(Commercial Value: Total Project Cost is $340,000. Annual maintenance: $52,000.) Tj
+T*
+(Payment schedule: 30% upfront, 30% midpoint, 40% final sign-off. Assumptions: Client) Tj
+T*
+(provides clean data extracts and IT lead.) Tj
+T*
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 3 0 R /MediaBox [0 0 612 792] /Contents 7 0 R /Resources << /Font << /F1 4 0 R >> >> >>
+endobj
+9 0 obj
+<< /Length 870 >>
+stream
+BT
+/F1 10 Tf
+50 750 Td
+14 TL
+/F1 14 Tf
+(SUPPLIER RFP PROPOSAL: Orbit Digital (Page 3)) Tj
+T*
+/F1 10 Tf
+(--------------------------------------------------------------------------------) Tj
+T*
+T*
+T*
+/F1 11 Tf
+(SECTION 5: SECURITY, COMPLIANCE, AND RISK CONTROLS) Tj
+T*
+/F1 9 Tf
+(Security & Compliance Controls: ISO 27001 certified, HIPAA compliant, SOC 1 Type II) Tj
+T*
+(certified. Standard role-based permissions, automated daily backups, and disaster) Tj
+T*
+(recovery RTO of 4 hours and RPO of 15 minutes.) Tj
+T*
+T*
+T*
+/F1 11 Tf
+(SECTION 6: SUPPORT MODEL, RELEVANT EXPERIENCE, & CLIENT REFERENCES) Tj
+T*
+/F1 9 Tf
+(Support Model & References: 24/5 global support with dedicated escalation matrix.) Tj
+T*
+(Industry references: State Procurement Board \(10-year client\), Fortune 100) Tj
+T*
+(Manufacturing Corp \(Enterprise Rollout, 2024\), Metro Supply Alliance.) Tj
+T*
+ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 3 0 R /MediaBox [0 0 612 792] /Contents 9 0 R /Resources << /Font << /F1 4 0 R >> >> >>
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000104 00000 n 
+0000000174 00000 n 
+0000000254 00000 n 
+0000001345 00000 n 
+0000001471 00000 n 
+0000002426 00000 n 
+0000002552 00000 n 
+0000003473 00000 n 
+trailer
+<< /Size 11 /Root 1 0 R >>
+startxref
+3600
+%%EOF

@@ -1,0 +1,5 @@
+{
+  "name": "RFP Evaluation & Supplier Ranking",
+  "description": "AI-assisted procurement system that evaluates supplier proposals against configurable criteria using LLMs, with pure deterministic Python scoring, peer benchmarking, PPI, and tie-breaking.",
+  "requestFramePermissions": []
+}

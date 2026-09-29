@@ -1,0 +1,91 @@
+# ==============================================================================
+# .gitignore - RFP Evaluation & Supplier Ranking System
+# Files and directories excluded from Git repository
+# All items listed below are generated at runtime or contain local credentials.
+# ==============================================================================
+
+# Node dependencies & web build artifacts
+node_modules/
+dist/
+build/
+coverage/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment & API Credentials (STRICT POLICY: Never commit secrets)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+!.env.example
+
+# Python runtime artifacts, bytecode & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+venv/
+.venv/
+env/
+ENV/
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+parts/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Runtime generated SQLite databases (created via seed_db.py, test runs, or runtime evaluations)
+*.db
+*.db-journal
+*.sqlite3
+*.db-shm
+*.db-wal
+test_rfp_evaluation.db
+rfp_evaluation.db
+
+# Runtime generated chart images, SVGs, and exported scripts
+chart_radar.svg
+chart_bars.svg
+chart_trajectory.svg
+chart_*.svg
+chart_*.png
+rfp_*_matplotlib.py
+rfp_*_plotly.py
+rfp_*_pure_python.py
+
+# Runtime generated evaluation run JSON exports
+*_export.json
+sample_rfp_run_export.json
+run_*.json
+
+# Runtime generated synthetic input PDFs & sample directories
+sample_rfps/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# OS and IDE caches
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+*.swp
+*.tmp
+*.bak
+

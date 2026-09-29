@@ -2,13 +2,6 @@
 
 An enterprise-grade AI-assisted procurement intelligence platform that ingests supplier proposal PDFs, scores them against dynamically configurable criteria using an LLM, applies pure deterministic Python business logic for peer benchmarking and tie-breaking, and produces an explainable, auditable final leaderboard with direct evidence citations.
 
-## Project Links
-
-| Field | Value |
-| :--- | :--- |
-| Git URL |  |
-| Streamlit URL |  |
-
 ---
 
 ## 📚 Project Documentation Hub
@@ -172,18 +165,14 @@ The visual comparison suite (`SupplierChartsSection.tsx`) provides five interact
 - **Token Savings:** Achieves **80% to 95%** token reduction across incremental evaluation workflows.
 
 ### 5.2 Enterprise API Key Security Policy
-- **Session-Only Memory Standard:** In-app API keys are entered via a secure pop-up dialog upon application load and maintained **strictly in ephemeral memory (RAM)**.
-- **Cleared on Page Reload:** API keys are never written to `localStorage`, `sessionStorage`, cookies, or repository files; refreshing or closing the browser immediately purges the credential.
-- **Secure Runtime Injection:** The backend system utilizes server-side runtime injection via `GEMINI_API_KEY` environment variables.
+- **Zero Client-Side Key Storage:** API keys are **never stored** in local storage, session storage, cookies, or git repository files.
+- **Secure Runtime Injection:** The system utilizes server-side runtime injection via `GEMINI_API_KEY` environment variables.
 
-### 5.3 Git Hygiene & .gitignore Enforcement
-- All runtime-generated artifacts, SQLite databases (`*.db`, `*.sqlite3`), generated charts (`chart_*.svg`, `chart_*.png`), run export JSON files (`*_export.json`), Python bytecode (`__pycache__/`, `*.pyc`), and local environment secrets (`.env*`) are strictly excluded via `.gitignore`.
-
-### 5.4 Unified Clean Architecture
-- **Single Canonical Input:** All proposal PDFs reside exclusively in `./input/`.
+### 5.3 Unified Clean Architecture
+- **Single Canonical Input:** All proposal PDFs reside exclusively in `./input/`. The redundant `sample_rfps/` folder was removed.
+- **Duplicate File Cleanup:** Corrected `architechure.md` typo copy into canonical `architecture.md`. Unused `agentic_rfp_project/` folder has been purged.
 - **Export Records (JSON):** Positioned directly inside the **Rankings & Scorecards** tab, as exported records correspond to the current active evaluation run.
 - **Colorful Tab Icons:** All navigation tabs feature vibrant, distinct icons without changing icon semantics.
-- **Document Hub Markdown Engine:** Fully parses Markdown `.md` files into structured HTML headings, tables, blockquotes, syntax-highlighted code blocks with one-click copy, and toggles between rendered and raw modes.
 
 ---
 
@@ -192,26 +181,22 @@ The visual comparison suite (`SupplierChartsSection.tsx`) provides five interact
 The application includes a unified **System Configuration & Testing Tools Hub** (`DeveloperHubModal.tsx`), accessible via the **Tools & Tests** button in the header or directly from the Visual Comparisons section:
 
 1. **Python Chart Generator (`PythonChartGenerator.tsx`):**
-   - **Criteria Performance Trajectory (Line Graph):** Traces parallel criteria trajectories across all proposals. Slope crossovers highlight where a vendor outpaces competitors in technical or security areas but drops in commercial or schedule criteria. Implemented across **Pure Python SVG** (`chart_trajectory.svg`), **Matplotlib**, and **Plotly**, with a live interactive SVG preview.
-   - **Radar Capabilities Profile:** Multi-dimensional polygon overlay (Matplotlib, Plotly, & pure SVG).
-   - **Category Scores Grouped Bar Chart:** Head-to-head category breakdown (Matplotlib, Plotly, & pure SVG).
-   - **Leader Gap Analysis Chart:** Deficit benchmark visualization (Matplotlib, Plotly, & pure SVG).
-   - **Pure Python Zero-Dependency SVG Script** (`generate_charts.py`): Standalone utility generating all SVGs without installing NumPy, Matplotlib, or Plotly.
+   - **Radar Capabilities Profile** (Matplotlib & pure SVG).
+   - **Category Scores Grouped Bar Chart** (Matplotlib, Plotly, & pure SVG).
+   - **Leader Gap Analysis Chart** (Matplotlib, Plotly, & pure SVG).
+   - **Pure Python Zero-Dependency SVG Script** (`generate_charts.py`) that executes in any environment without installing NumPy, Matplotlib, or Plotly.
 2. **Interactive Testing Notebook (`rfp_evaluation_test.ipynb`):**
-   - 10 comprehensive testing cells covering document ingestion, mathematical scoring, 4-tier tie-breakers, end-to-end pipeline execution, SQLite verification, **Cell 8: Auto-Resolution Toggle & Strict Validation Mode**, **Cell 9: Three-Tier Zero-Redundancy Caching Pipeline**, and **Cell 10: Criteria Performance Trajectory Line Graph Prototype**.
-3. **Evaluation Runner with Auto-Resolution Toggle:**
-   - **Auto-Resolution Active:** Automatically clamps out-of-bounds scores to $[0.0, \text{max\_score}]$, zero-fills omitted criteria with $0.0$, and logs itemized audit warnings (`instruction.md Section 3`).
-   - **Strict Mode:** Flags unresolvable anomalies and halts automated promotion for manual procurement arbitration.
-   - **Real-Time 6-Stage Workflow Execution:** Live visual stepper illustrating pipeline progress through Ingestion, Caching, Auto-Resolution, Benchmarking, Tie-Breaking, and Multi-Chart Persistence.
-4. **Python Source Code Viewer (`CodeArtifactsHub.tsx`):**
+   - Inspect all 7 testing cells directly inside the web UI with syntax highlighting and verification notes.
+3. **Python Source Code Viewer (`CodeArtifactsHub.tsx`):**
    - Live browser for all backend scripts: `orchestrator.py`, `evaluator.py`, `validator.py`, `ranker.py`, `pdf_extractor.py`, `database.py`.
+4. **Workflow Step Visualizer:**
+   - Step-by-step trace of data transformations from raw PDF through SQLite storage.
 
 ### Running Python Chart Generation via CLI
 ```bash
 python3 generate_charts.py
 ```
 *Output:*
-- Generates `chart_trajectory.svg` (Criteria Performance Trajectory Line Graph)
 - Generates `chart_radar.svg` (Radar Capabilities Profile)
 - Generates `chart_bars.svg` (Category Comparison Bar Chart)
 - Displays ASCII/Unicode visual progress comparison bars in the terminal.
