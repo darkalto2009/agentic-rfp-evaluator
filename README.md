@@ -4,10 +4,10 @@ An enterprise-grade AI-assisted procurement intelligence platform that ingests s
 
 ## Project Links
 
-| Field | Value |
-| :--- | :--- |
-| Git URL |  |
-| Streamlit URL |  |
+| Field         | Value                                                     |
+| :------------ | :-------------------------------------------------------- |
+| Git URL       | https://github.com/darkalto2009/agentic-rfp-evaluator.git |
+| Streamlit URL | https://darkalto-rfp-evaluator.streamlit.app/             |
 
 ---
 
@@ -15,22 +15,23 @@ An enterprise-grade AI-assisted procurement intelligence platform that ingests s
 
 All comprehensive engineering documentation is accessible in the web application's **Documentation Hub** (located in the top header beside **Tools & Tests**) and in this repository:
 
-| Document | Description |
-| :--- | :--- |
-| ⚡ **[caching_system.md](./caching_system.md)** | Three-Tier Zero-Redundancy Caching and Incremental Evaluation Engine saving 80% to 95% LLM tokens. |
-| 🏛️ **[architecture.md](./architecture.md)** | Comprehensive system architecture, component breakdown, mathematical formulations, and database schemas. |
-| 📋 **[instruction.md](./instruction.md)** | Engineering best practices followed and mandatory guidelines for future development. |
-| 🤖 **[Agents.md](./Agents.md)** | Multi-agent architecture specification, roles, inputs/outputs, and lifecycle protocols. |
-| 🧠 **[Claude.md](./Claude.md)** | Context, architectural invariants, security policies, and conventions for Claude-based coding agents. |
-| 💻 **[copilot-instruction.md](./copilot-instruction.md)** | Rules and mathematical guardrails for GitHub Copilot, Cursor, and IDE assistants. |
+| Document                                                    | Description                                                                                               |
+| :---------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------- |
+| ⚡ **[caching_system.md](./caching_system.md)**             | Three-Tier Zero-Redundancy Caching and Incremental Evaluation Engine saving 80% to 95% LLM tokens.        |
+| 🏛️ **[architecture.md](./architecture.md)**                 | Comprehensive system architecture, component breakdown, mathematical formulations, and database schemas.  |
+| 📋 **[instruction.md](./instruction.md)**                   | Engineering best practices followed and mandatory guidelines for future development.                      |
+| 🤖 **[Agents.md](./Agents.md)**                             | Multi-agent architecture specification, roles, inputs/outputs, and lifecycle protocols.                   |
+| 🧠 **[Claude.md](./Claude.md)**                             | Context, architectural invariants, security policies, and conventions for Claude-based coding agents.     |
+| 💻 **[copilot-instruction.md](./copilot-instruction.md)**   | Rules and mathematical guardrails for GitHub Copilot, Cursor, and IDE assistants.                         |
 | 🎓 **[EXAM_EVALUATOR_GUIDE.md](./EXAM_EVALUATOR_GUIDE.md)** | Complete walkthrough for exam evaluators covering all rubric criteria, features, and future enhancements. |
-| 📊 **[EVALUATION_SUMMARY.md](./EVALUATION_SUMMARY.md)** | Quick reference summary of rubric alignment (100 Marks) and system capabilities. |
+| 📊 **[EVALUATION_SUMMARY.md](./EVALUATION_SUMMARY.md)**     | Quick reference summary of rubric alignment (100 Marks) and system capabilities.                          |
 
 ---
 
 ## 1. System Architecture & The Strict Separation Principle
 
 This system strictly enforces the **Strict Separation Principle**:
+
 > **The LLM may evaluate unstructured proposal content and cite exact evidence, but it must NEVER decide arithmetic, benchmarks, tie-breaks, or final ranks.**
 
 ```
@@ -66,6 +67,7 @@ This system strictly enforces the **Strict Separation Principle**:
 ```
 
 ### Agent Roles:
+
 1. **Orchestrator Agent** (`orchestrator.py`): Sequences pipeline steps from document intake through database persistence.
 2. **Document Tool** (`pdf_extractor.py`): Ingests supplier PDFs and extracts clean text and page tokens.
 3. **Evaluation Agent** (`evaluator.py`): Injects dynamic SQLite criteria into the system prompt; requests evidence-grounded JSON scoring.
@@ -78,31 +80,37 @@ This system strictly enforces the **Strict Separation Principle**:
 ## 2. Mathematical Formulas & Tie-Break Rules
 
 ### A. Mathematical Formulas (Executed in Pure Python & TypeScript)
+
 1. **Absolute Weighted Score**:
    $$\text{Absolute Score} = \sum_{c} \left( \frac{\text{Score}_{s,c}}{\text{Max Score}_c} \times \text{Weight}_c \right)$$
-   *(Sums to maximum 100.0 points when active criteria weights sum to 100%)*
+   _(Sums to maximum 100.0 points when active criteria weights sum to 100%)_
 
 2. **Criterion Benchmark**:
    $$\text{Benchmark}_c = \max_{s \in \text{Suppliers}} (\text{Score}_{s,c})$$
-   *(Highest valid score observed for criterion $c$ across all evaluated proposals)*
+   _(Highest valid score observed for criterion $c$ across all evaluated proposals)_
 
 3. **Criterion Gap**:
    $$\text{Gap}_{s,c} = \text{Score}_{s,c} - \text{Benchmark}_c \quad (\le 0)$$
-   *(Equal to 0.0 for benchmark leaders; negative for all others)*
+   _(Equal to 0.0 for benchmark leaders; negative for all others)_
 
 4. **Relative Performance Percentage**:
-   $$\text{Relative Performance \%}_{s,c} = \begin{cases}
+
+   $$
+   \text{Relative Performance \%}_{s,c} = \begin{cases}
    \left( \frac{\text{Score}_{s,c}}{\text{Benchmark}_c} \right) \times 100 & \text{if } \text{Benchmark}_c > 0 \\
    100.0 & \text{if } \text{Benchmark}_c = 0 \text{ and } \text{Score}_{s,c} = 0 \\
    0.0 & \text{otherwise}
-   \end{cases}$$
+   \end{cases}
+   $$
 
 5. **Peer Performance Index (PPI)**:
    $$\text{PPI}_s = \sum_{c} \left( \text{Relative Performance \%}_{s,c} \times \frac{\text{Weight}_c}{100} \right)$$
-   *(Weighted average of supplier's relative performance against peer benchmarks)*
+   _(Weighted average of supplier's relative performance against peer benchmarks)_
 
 ### B. Mandatory Deterministic Tie-Break Rules
+
 When sorting suppliers to assign final ranks `1, 2, 3...`:
+
 1. **Tier 1 - Higher PPI** (`descending`)
 2. **Tier 2 - Earlier Submission Date** (`ascending` - ISO `YYYY-MM-DD`)
 3. **Tier 3 - Higher Historical Experience Rating** (`descending` - 0.0 to 5.0 scale)
@@ -158,6 +166,7 @@ The visual comparison suite (`SupplierChartsSection.tsx`) provides five interact
 5. **Total Score:** Dual-bar overview showing absolute weighted scores (/100) alongside relative Peer Performance Index (PPI %).
 
 ### Decision Insight & Category Leaders Hierarchy
+
 - **Prominent Decision Insight Banner:** Located directly on top of the Category Leaders & Strengths panel, providing contextual analytical commentary tailored to the active chart.
 - **Category Leaders & Strengths:** Highlights benchmark winners for each criterion with assigned weights and maximum scores.
 
@@ -166,20 +175,24 @@ The visual comparison suite (`SupplierChartsSection.tsx`) provides five interact
 ## 5. Zero-Redundancy Caching & Security Policy
 
 ### 5.1 Three-Tier Caching Pipeline (`caching_system.md`)
+
 - **Tier 1 (Document Cache):** Fingerprints PDFs via SHA-256 (`doc_hash`), avoiding duplicate parsing and tokenization.
 - **Tier 2 (Evaluation Cache):** Caches qualitative scorecards and verbatim citations keyed by `SHA256(DocHash + CriteriaDefHash + ModelName)`. Weight adjustments require **0 tokens and 0 API calls**.
 - **Tier 3 (Deterministic Engine):** Recomputes peer benchmarks, gaps, relative percentages, and 4-tier tie-breakers instantly in pure local code ($<50\text{ ms}$, 0 API calls).
 - **Token Savings:** Achieves **80% to 95%** token reduction across incremental evaluation workflows.
 
 ### 5.2 Enterprise API Key Security Policy
+
 - **Session-Only Memory Standard:** In-app API keys are entered via a secure pop-up dialog upon application load and maintained **strictly in ephemeral memory (RAM)**.
 - **Cleared on Page Reload:** API keys are never written to `localStorage`, `sessionStorage`, cookies, or repository files; refreshing or closing the browser immediately purges the credential.
 - **Secure Runtime Injection:** The backend system utilizes server-side runtime injection via `GEMINI_API_KEY` environment variables.
 
 ### 5.3 Git Hygiene & .gitignore Enforcement
+
 - All runtime-generated artifacts, SQLite databases (`*.db`, `*.sqlite3`), generated charts (`chart_*.svg`, `chart_*.png`), run export JSON files (`*_export.json`), Python bytecode (`__pycache__/`, `*.pyc`), and local environment secrets (`.env*`) are strictly excluded via `.gitignore`.
 
 ### 5.4 Unified Clean Architecture
+
 - **Single Canonical Input:** All proposal PDFs reside exclusively in `./input/`.
 - **Export Records (JSON):** Positioned directly inside the **Rankings & Scorecards** tab, as exported records correspond to the current active evaluation run.
 - **Colorful Tab Icons:** All navigation tabs feature vibrant, distinct icons without changing icon semantics.
@@ -207,10 +220,13 @@ The application includes a unified **System Configuration & Testing Tools Hub** 
    - Live browser for all backend scripts: `orchestrator.py`, `evaluator.py`, `validator.py`, `ranker.py`, `pdf_extractor.py`, `database.py`.
 
 ### Running Python Chart Generation via CLI
+
 ```bash
 python3 generate_charts.py
 ```
-*Output:*
+
+_Output:_
+
 - Generates `chart_trajectory.svg` (Criteria Performance Trajectory Line Graph)
 - Generates `chart_radar.svg` (Radar Capabilities Profile)
 - Generates `chart_bars.svg` (Category Comparison Bar Chart)
@@ -221,31 +237,37 @@ python3 generate_charts.py
 ## 5. Quickstart & Installation
 
 ### Step 1: Install Python dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### Step 2: Seed SQLite Database
+
 ```bash
 python seed_db.py
 ```
 
 ### Step 3: Generate Synthetic Proposal PDFs
+
 ```bash
 python generate_synthetic_pdfs.py  # Generates 4 PDFs directly into input/
 ```
 
 ### Step 4: Run Prototyping Test Notebook
+
 ```bash
 jupyter notebook rfp_evaluation_test.ipynb
 ```
 
 ### Step 5: Run Standalone Python Chart Generator
+
 ```bash
 python3 generate_charts.py
 ```
 
 ### Step 6: Launch Web Application
+
 ```bash
 # Launch Streamlit app
 streamlit run app.py
@@ -258,15 +280,15 @@ npm run dev
 
 ## 6. Submission Rubric Verification (100 Marks)
 
-| Area | Marks | Implementation in this Codebase |
-| :--- | :--- | :--- |
-| **Agentic Workflow & Tool Use** | 20 | Clear orchestrator agent in `orchestrator.py` calling document extraction, qualitative LLM scoring, Pydantic validation, and ranking tools sequentially. |
-| **PDF Extraction & Prompting** | 15 | `pdf_extractor.py` parses multi-page PDFs; `evaluator.py` builds dynamic criteria prompts and outputs structured JSON with exact quotation citations. |
-| **Validation & Scoring** | 20 | `validator.py` clips scores `[0, max_score]`, fills missing criteria with `0.0`, logs warnings; `ranker.py` executes exact mathematical formulas. |
-| **Peer Ranking & Tie-Breaks** | 20 | `ranker.py` calculates Benchmarks, Gaps, Relative %, PPI, and enforces 4-tier deterministic tie-breaking (PPI $\to$ Date $\to$ Exp $\to$ Name). |
-| **SQLite & Persistence** | 10 | `database.py` defines `evaluation_criteria`, `rfp_runs`, and `supplier_results` tables with complete JSON storage and retrieval. |
-| **User Interface** | 10 | React SPA + Streamlit `app.py` delivering Criteria CRUD, PDF Upload, Interactive Leaderboard, Drill-down Scorecard, System Tools, and JSON Export. |
-| **Documentation & Testing** | 5 | `rfp_evaluation_test.ipynb` with 7 test cells, comprehensive `README.md`, `architecture.md`, `instruction.md`, `Agents.md`, `Claude.md`, `copilot-instruction.md`, and `EXAM_EVALUATOR_GUIDE.md`. |
+| Area                            | Marks | Implementation in this Codebase                                                                                                                                                                   |
+| :------------------------------ | :---- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Agentic Workflow & Tool Use** | 20    | Clear orchestrator agent in `orchestrator.py` calling document extraction, qualitative LLM scoring, Pydantic validation, and ranking tools sequentially.                                          |
+| **PDF Extraction & Prompting**  | 15    | `pdf_extractor.py` parses multi-page PDFs; `evaluator.py` builds dynamic criteria prompts and outputs structured JSON with exact quotation citations.                                             |
+| **Validation & Scoring**        | 20    | `validator.py` clips scores `[0, max_score]`, fills missing criteria with `0.0`, logs warnings; `ranker.py` executes exact mathematical formulas.                                                 |
+| **Peer Ranking & Tie-Breaks**   | 20    | `ranker.py` calculates Benchmarks, Gaps, Relative %, PPI, and enforces 4-tier deterministic tie-breaking (PPI $\to$ Date $\to$ Exp $\to$ Name).                                                   |
+| **SQLite & Persistence**        | 10    | `database.py` defines `evaluation_criteria`, `rfp_runs`, and `supplier_results` tables with complete JSON storage and retrieval.                                                                  |
+| **User Interface**              | 10    | React SPA + Streamlit `app.py` delivering Criteria CRUD, PDF Upload, Interactive Leaderboard, Drill-down Scorecard, System Tools, and JSON Export.                                                |
+| **Documentation & Testing**     | 5     | `rfp_evaluation_test.ipynb` with 7 test cells, comprehensive `README.md`, `architecture.md`, `instruction.md`, `Agents.md`, `Claude.md`, `copilot-instruction.md`, and `EXAM_EVALUATOR_GUIDE.md`. |
 
 ---
 
