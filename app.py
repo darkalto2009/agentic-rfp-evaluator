@@ -8,18 +8,23 @@ Streamlit web application featuring:
 5. Run Details & JSON Export (Historical run viewer from SQLite, Audit Warnings, Full JSON Download)
 """
 
-import streamlit as st
+import datetime
 import json
 import os
-import datetime
-from typing import List, Dict, Any
+
+import streamlit as st
 
 from database import (
-    init_db, seed_criteria, get_all_criteria, get_active_criteria,
-    update_criterion, add_criterion, get_all_runs, get_run_details
+    add_criterion,
+    get_all_criteria,
+    get_all_runs,
+    get_run_details,
+    init_db,
+    seed_criteria,
+    update_criterion,
 )
-from orchestrator import run_agentic_rfp_pipeline
 from generate_synthetic_pdfs import generate_all_proposals
+from orchestrator import run_agentic_rfp_pipeline
 
 # Page Configuration
 st.set_page_config(
@@ -92,9 +97,9 @@ if menu == "⚙️ Evaluation Criteria":
             col_a.write(f"**Description / Focus:** {c['description']}")
             new_weight = col_b.number_input(f"Weight % (ID {c['criterion_id']})", min_value=0.0, max_value=100.0, value=float(c["weight"]), step=5.0)
             new_max = col_c.number_input(f"Max Score (ID {c['criterion_id']})", min_value=1.0, max_value=100.0, value=float(c["max_score"]), step=1.0)
-            is_act = col_d.checkbox(f"Active", value=bool(c["is_active"]), key=f"act_{c['criterion_id']}")
+            is_act = col_d.checkbox("Active", value=bool(c["is_active"]), key=f"act_{c['criterion_id']}")
 
-            if col_d.button(f"Save Changes", key=f"btn_save_{c['criterion_id']}"):
+            if col_d.button("Save Changes", key=f"btn_save_{c['criterion_id']}"):
                 update_criterion(c["criterion_id"], new_weight, new_max, 1 if is_act else 0)
                 st.success(f"Updated Criterion #{c['criterion_id']}")
                 st.rerun()
@@ -278,7 +283,7 @@ elif menu == "🏆 Leaderboard & Scorecards":
 
         col1, col2, col3, col4 = st.columns(4)
         if top_supplier:
-            col1.metric("🥇 Winning Supplier", top_supplier["supplier_name"], f"Rank #1")
+            col1.metric("🥇 Winning Supplier", top_supplier["supplier_name"], "Rank #1")
             col2.metric("Top PPI", f"{top_supplier['ppi']:.2f}%", f"Abs: {top_supplier['absolute_score']:.1f}")
         col3.metric("Suppliers Evaluated", len(leaderboard))
         col4.metric("Active Criteria Count", len(run_data.get("detailed_scorecards", [{}])[0].get("criteria", [])))
@@ -348,9 +353,9 @@ elif menu == "🏆 Leaderboard & Scorecards":
             st.write("### Grounding Evidence & AI Justification Audit")
             for c in crit_data:
                 with st.expander(f"📌 {c.get('name')}: Score {c.get('score')}/{c.get('max_score')} (Relative: {c.get('relative_percentage', 0):.1f}%)"):
-                    st.markdown(f"**Direct Document Evidence:**")
+                    st.markdown("**Direct Document Evidence:**")
                     st.info(f"\"{c.get('evidence', 'No quote cited.')}\"")
-                    st.markdown(f"**Evaluation Justification:**")
+                    st.markdown("**Evaluation Justification:**")
                     st.write(c.get("justification", "No justification provided."))
 
 
@@ -409,7 +414,7 @@ elif menu == "📜 Past Run History":
                         key=f"dl_{run_id}"
                     )
 
-                    if st.button(f"🔍 Load into Active Scorecards", key=f"load_{run_id}"):
+                    if st.button("🔍 Load into Active Scorecards", key=f"load_{run_id}"):
                         st.session_state.current_run_result = run_export_data
                         st.success(f"Loaded {run_id} as active run.")
                         st.rerun()
@@ -468,3 +473,10 @@ elif menu == "📖 Architecture & Formulas":
 3. **Tier 3 - Higher Experience Rating**: In case of identical date, higher rating wins (Descending).
 4. **Tier 4 - Supplier Name**: In case of identical experience, alphabetical order applies (Ascending).
     """)
+
+
+st.markdown("---")
+st.markdown(
+    "<div style='text-align: center;'>© 2026 Darkalto Developer | All Rights Reserved</div>",
+    unsafe_allow_html=True,
+)
